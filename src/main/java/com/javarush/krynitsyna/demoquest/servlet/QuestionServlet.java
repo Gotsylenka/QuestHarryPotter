@@ -21,7 +21,7 @@ public class QuestionServlet extends HttpServlet {
     private final AnswerRepository answerRepository = new AnswerRepository();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idParameter = req.getParameter("id");
         if (idParameter == null || idParameter.isEmpty()) {
             Optional<Question> firstQuestion = questionRepository.get(1L);
@@ -36,7 +36,7 @@ public class QuestionServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         StatisticRepository statisticRepository = (StatisticRepository) session.getAttribute("statisticRepository");
         User user = (User) session.getAttribute("user");

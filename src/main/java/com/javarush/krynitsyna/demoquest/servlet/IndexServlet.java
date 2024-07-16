@@ -14,14 +14,14 @@ import java.io.IOException;
 public class IndexServlet extends HttpServlet {
     private final StatisticRepository statisticRepository = new StatisticRepository();
     private final UserRepository userRepository = new UserRepository();
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("statisticRepository",statisticRepository);
         session.setAttribute("userRepository", userRepository);
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String clickedButton = request.getParameter("clickedButton");
         if ("loginButton".equals(clickedButton)) {
             response.sendRedirect("login");
